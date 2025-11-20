@@ -1,0 +1,11 @@
+{{/* Shortcode: readfile
+     Lê um arquivo relativo ao diretório do .md atual.
+*/}}
+
+{{ $rel := .Get 0 }}                 {{/* nome recebido no shortcode */}}
+{{ $pageDir := path.Dir .Page.File.Path }}   {{/* diretório do .md */}}
+{{ $full := path.Join $pageDir $rel }}       {{/* caminho absoluto do arquivo */}}
+
+{{ $content := readFile $full }}
+
+<pre><code>{{ $content | safeHTML }}</code></pre>
